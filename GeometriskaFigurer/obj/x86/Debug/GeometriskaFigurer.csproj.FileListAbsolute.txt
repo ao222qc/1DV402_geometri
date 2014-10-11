@@ -1,0 +1,4 @@
+c:\users\ao222qc\documents\visual studio 2010\Projects\GeometriskaFigurer\bin\Debug\GeometriskaFigurer.exe
+c:\users\ao222qc\documents\visual studio 2010\Projects\GeometriskaFigurer\bin\Debug\GeometriskaFigurer.pdb
+c:\users\ao222qc\documents\visual studio 2010\Projects\GeometriskaFigurer\obj\x86\Debug\GeometriskaFigurer.exe
+c:\users\ao222qc\documents\visual studio 2010\Projects\GeometriskaFigurer\obj\x86\Debug\GeometriskaFigurer.pdb
