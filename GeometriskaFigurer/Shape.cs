@@ -20,7 +20,7 @@ namespace GeometriskaFigurer
             set 
             {
                 if (value <= 0)
-                { throw new ArgumentException("Please enter a number larger than zero to calculate.");} //När datan skickas hit ifrån Ellipse/Rectangle kollas den innan
+                { throw new ArgumentException("The number(s) entered cannot be calculated. Please enter a value bigger than 0."); } //När datan skickas hit ifrån Ellipse/Rectangle kollas den innan
                 _length = value;                                                                       // den tillskrivs fälten. Kastar undantag om värdet är för litet.
             }
         }
@@ -36,7 +36,7 @@ namespace GeometriskaFigurer
             set  
             {
                 if (value <= 0)
-                { throw new ArgumentException("Please enter a number larger than zero to calculate."); }
+                { throw new ArgumentException("The number(s) entered cannot be calculated. Please enter a value bigger than 0."); }
                 _width = value;
             }
         }
