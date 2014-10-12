@@ -20,9 +20,8 @@ namespace GeometriskaFigurer
             set 
             {
                 if (value <= 0)
-                { throw new ArgumentException();}
-
-                _length = value;
+                { throw new ArgumentException("Please enter a number larger than zero to calculate.");} //När datan skickas hit ifrån Ellipse/Rectangle kollas den innan
+                _length = value;                                                                       // den tillskrivs fälten. Kastar undantag om värdet är för litet.
             }
         }
         public abstract double Perimeter
@@ -37,7 +36,7 @@ namespace GeometriskaFigurer
             set  
             {
                 if (value <= 0)
-                { throw new ArgumentException(); }
+                { throw new ArgumentException("Please enter a number larger than zero to calculate."); }
                 _width = value;
             }
         }
@@ -51,7 +50,7 @@ namespace GeometriskaFigurer
         {
             StringBuilder hej = new StringBuilder();
             hej.AppendFormat("Length    : {0,5}\nWidth     : {1,5}\nPerimeter : {2,5:F1}\nArea      : {3,5:F1}",
-                 Length, Width, Perimeter, Area);
+                 _length, _width, Perimeter, Area);
             return hej.ToString();
         }
 
@@ -59,5 +58,5 @@ namespace GeometriskaFigurer
 
 
     }
-    public enum ShapeType {Ellipse, Rectangle};
+    public enum ShapeType {Ellipse, Rectangle}
 }
