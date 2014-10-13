@@ -8,7 +8,6 @@ namespace GeometriskaFigurer
     class Rectangle : Shape
     {
         public override double Area
-            
         {
             get 
             {
@@ -25,7 +24,7 @@ namespace GeometriskaFigurer
         public Rectangle(double length, double width)
             : base(length, width)
         {
- 
+            //Tom konstruktor som tar emot argument, fixar in dem till basklassens konstruktor med :base(length,width).
         }
 
     }

@@ -27,12 +27,10 @@ namespace GeometriskaFigurer
         public abstract double Perimeter
         {
             get;
-
         }
         public double Width
         {
             get { return _width; }
-
             set  
             {
                 if (value <= 0)

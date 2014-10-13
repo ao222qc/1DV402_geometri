@@ -17,20 +17,29 @@ namespace GeometriskaFigurer
                     Console.Clear();
                     ViewMenu();
                     int input = int.Parse(Console.ReadLine());
-
                     switch (input)
                     {
                         case 0:
-                            Console.BackgroundColor = ConsoleColor.DarkGreen;
-                            Console.WriteLine("\nPlease come again for all your calculatin' needs!\n");
-                            Console.ResetColor();
-                            return;
+                             Console.BackgroundColor = ConsoleColor.DarkGreen;
+                             Console.WriteLine("\nPlease come again for all your calculatin' needs!\n");
+                             Console.ResetColor();
+                             return;
                         case 1:
-                            ViewShapeDetail(CreateShape(ShapeType.Ellipse));//Anropar ViewShapeDetail (creatshape körs först och returnerar en referens till ett objekt,
-                            break;                                          //vilket är referensen som skickas till ViewShapeDetail när datan ska presenteras.
+                             Console.BackgroundColor = ConsoleColor.DarkGreen;
+                             Console.WriteLine("\n=============");
+                             Console.WriteLine("-  ELLIPSE  -");
+                             Console.WriteLine("=============\n");
+                             Console.ResetColor();
+                             ViewShapeDetail(CreateShape(ShapeType.Ellipse));//Anropar ViewShapeDetail (creatshape körs först och returnerar en referens till ett objekt,
+                             break;                                          //vilket är referensen som skickas till ViewShapeDetail när datan ska presenteras.
                         case 2:
-                            ViewShapeDetail(CreateShape(ShapeType.Rectangle));
-                            break;
+                             Console.BackgroundColor = ConsoleColor.DarkGreen;
+                             Console.WriteLine("\n=============");
+                             Console.WriteLine("- RECTANGLE -");
+                             Console.WriteLine("=============\n");
+                             Console.ResetColor();
+                             ViewShapeDetail(CreateShape(ShapeType.Rectangle));
+                             break;
                         default:
                             Console.BackgroundColor = ConsoleColor.DarkRed;
                             Console.WriteLine("\nPlease input a menu choice between 0-2 as specified above.\n");
@@ -55,43 +64,40 @@ namespace GeometriskaFigurer
 
                 if (shapeType == ShapeType.Ellipse)
                 {
-                    Ellipse ellipse = new Ellipse(length, width);
-                    Console.BackgroundColor = ConsoleColor.DarkGreen;
-                    Console.WriteLine("=============");
-                    Console.WriteLine("\nELLIPSE!\n");
-                    Console.WriteLine("=============");
-                    Console.ResetColor();
-                    return ellipse;
+                    return new Ellipse(length, width);
                 }
                 if (shapeType == ShapeType.Rectangle)
                 {
-                    Rectangle rectangle = new Rectangle(length, width);
-                    Console.BackgroundColor = ConsoleColor.DarkGreen;
-                    Console.WriteLine("=============");
-                    Console.WriteLine("\nRECTANGLE!\n");
-                    Console.WriteLine("=============");
-                    Console.ResetColor();
-                    return rectangle;
+                    return new Rectangle(length, width);
                 }
-      
             return null;
         }
-
         private static double ReadDoubleGreaterThanZero(string prompt) //Skicka in en stringprompt för att skriva ut, returnerar ett flyttal vid anropet.
         {                                                              //Det returnerade värdet lagras i detta fall i t.ex (double length/width) i metoden CreateShape.
                                                                        //Tar även hand om felaktig input, om 
             while (true)
             {
-                Console.Write(prompt);
-   
+                Console.Write(prompt);   
                 double input = double.Parse(Console.ReadLine());
-
-                return input;            
+                if (input > 0)
+                {
+                    return input;
+                }
+                else 
+                {
+                    Console.BackgroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("\nTerribly sorry, you have to enter a value above 0.\n");
+                    Console.ResetColor();
+                }          
             }
         }
         private static void ViewMenu()
         {
-            Console.WriteLine("\nGeometrical figures.\n");
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("==========================");
+            Console.WriteLine("-  Geometrical figures   -");
+            Console.WriteLine("==========================\n");
+            Console.ResetColor();
             Console.WriteLine("0: Cancel.\n");
             Console.WriteLine("1: Ellipse.\n");
             Console.WriteLine("2: Rectangle.\n");
@@ -100,9 +106,15 @@ namespace GeometriskaFigurer
         }
         private static void ViewShapeDetail(Shape shape) //skriver ut datan ifrån ToStringmetoden i shape, där längd, bredd, area och omkrets "samlas".
         {
-            Console.WriteLine("\n{0}\n", shape.ToString());
-            Console.WriteLine("=====================================\n");
             Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("\n=============");
+            Console.WriteLine("-  DETAILS  -");
+            Console.WriteLine("=============\n");
+            Console.ResetColor();
+
+            Console.WriteLine("{0}\n", shape.ToString());
+            Console.WriteLine("=====================================\n");
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine("Press any key to continue, ESCAPE closes the application."); //Nu när main anropat alla metoder klart så kollar den efter en Key (do-while).
             Console.ResetColor();                                                           //Escape avslutar metoden, andra knappar gör att mainmetoden körs igen och börjar anrop, presentation igen etc.
         }
