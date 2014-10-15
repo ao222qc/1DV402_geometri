@@ -8,7 +8,7 @@ namespace GeometriskaFigurer
     class Program
     {
         static void Main(string[] args) //Kallar på ViewMenu för att visa menyn, tar in input och skapar object i CreateSHape beroende på input. 
-                                        // Tar även hand om fel vid menyval genom en defaultcase där den presenterar ett felmed och går in i whiletrueloopen igen.
+                                        //Tar även hand om fel vid menyval genom en defaultcase där den presenterar ett felmed och går in i whiletrueloopen igen.
         {
             do
             {
@@ -20,26 +20,26 @@ namespace GeometriskaFigurer
                     switch (input)
                     {
                         case 0:
-                             Console.BackgroundColor = ConsoleColor.DarkGreen;
-                             Console.WriteLine("\nPlease come again for all your calculatin' needs!\n");
-                             Console.ResetColor();
-                             return;
+                            Console.BackgroundColor = ConsoleColor.DarkGreen;
+                            Console.WriteLine("\nPlease come again for all your calculatin' needs!\n");
+                            Console.ResetColor();
+                            return;
                         case 1:
-                             Console.BackgroundColor = ConsoleColor.DarkGreen;
-                             Console.WriteLine("\n=============");
-                             Console.WriteLine("-  ELLIPSE  -");
-                             Console.WriteLine("=============\n");
-                             Console.ResetColor();
-                             ViewShapeDetail(CreateShape(ShapeType.Ellipse));//Anropar ViewShapeDetail (creatshape körs först och returnerar en referens till ett objekt,
-                             break;                                          //vilket är referensen som skickas till ViewShapeDetail när datan ska presenteras.
+                            Console.BackgroundColor = ConsoleColor.DarkGreen;
+                            Console.WriteLine("\n=============");
+                            Console.WriteLine("-  ELLIPSE  -");
+                            Console.WriteLine("=============\n");
+                            Console.ResetColor();
+                            ViewShapeDetail(CreateShape(ShapeType.Ellipse));//Anropar ViewShapeDetail (creatshape körs först och returnerar en referens till ett objekt,
+                            break;                                          //vilket är referensen som skickas till ViewShapeDetail när datan ska presenteras.
                         case 2:
-                             Console.BackgroundColor = ConsoleColor.DarkGreen;
-                             Console.WriteLine("\n=============");
-                             Console.WriteLine("- RECTANGLE -");
-                             Console.WriteLine("=============\n");
-                             Console.ResetColor();
-                             ViewShapeDetail(CreateShape(ShapeType.Rectangle));
-                             break;
+                            Console.BackgroundColor = ConsoleColor.DarkGreen;
+                            Console.WriteLine("\n=============");
+                            Console.WriteLine("- RECTANGLE -");
+                            Console.WriteLine("=============\n");
+                            Console.ResetColor();
+                            ViewShapeDetail(CreateShape(ShapeType.Rectangle));
+                            break;
                         default:
                             Console.BackgroundColor = ConsoleColor.DarkRed;
                             Console.WriteLine("\nPlease input a menu choice between 0-2 as specified above.\n");
@@ -54,6 +54,13 @@ namespace GeometriskaFigurer
                     Console.WriteLine("\n{0} ", a.Message);
                     Console.ResetColor();
                 }
+                catch (Exception a)
+                {
+                   Console.BackgroundColor = ConsoleColor.DarkRed;
+                   Console.WriteLine(a.Message);
+                   Console.ResetColor();
+                }
+
             } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
         }
         private static Shape CreateShape(ShapeType shapeType) //Tar emot argument i som bestämmer vilken "form" som skapas, läser även in längd/bredd och när
@@ -74,21 +81,31 @@ namespace GeometriskaFigurer
         }
         private static double ReadDoubleGreaterThanZero(string prompt) //Skicka in en stringprompt för att skriva ut, returnerar ett flyttal vid anropet.
         {                                                              //Det returnerade värdet lagras i detta fall i t.ex (double length/width) i metoden CreateShape.
-                                                                       //Tar även hand om felaktig input, om 
+                                                                       //Tar även hand om felaktig input, om input är mindre än noll skrivs felmed ut och whileloopen fortsätter (tills den kan returnera input).
             while (true)
             {
-                Console.Write(prompt);   
-                double input = double.Parse(Console.ReadLine());
-                if (input > 0)
+                Console.Write(prompt);
+                try
                 {
-                    return input;
+                    double input = double.Parse(Console.ReadLine());
+
+                    if (input > 0)
+                    {
+                        return input;
+                    }
+                    else
+                    {
+                        Console.BackgroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine("\nTerribly sorry, you have to enter a value above 0.\n");
+                        Console.ResetColor();
+                    }   
                 }
-                else 
+                catch (Exception a)
                 {
                     Console.BackgroundColor = ConsoleColor.DarkRed;
-                    Console.WriteLine("\nTerribly sorry, you have to enter a value above 0.\n");
+                    Console.WriteLine(a.Message);
                     Console.ResetColor();
-                }          
+                }       
             }
         }
         private static void ViewMenu()

@@ -7,11 +7,13 @@ namespace GeometriskaFigurer
 {
     class Ellipse : Shape //Ärver ifrån abstrakta Shape.
     {
+        public static int Number = 0;
         public override double Area
         {
+            
             get
             {
-                return Math.PI * (Length / 2) * (Width / 2); //returnerar Area till Shape (som man kan se i references)
+                return Math.PI * (Length / 2) * (Width / 2); //returnerar Area till Shape (som man kan se i references). I shape är den abstract, behöver alltså en "utomstående uträkning" i metoden.
             }
         }
         public override double Perimeter 
